@@ -1,0 +1,55 @@
+# =====================================================
+# PaperTrail .gitignore
+# =====================================================
+
+# --- Environment ---
+.env
+.env.*
+**/.env
+**/.env.*
+
+# --- Java / Maven ---
+backend-java/target/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+.mvn/wrapper/maven-wrapper.jar
+
+# --- Python ---
+ai-service/__pycache__/
+ai-service/**/__pycache__/
+__pycache__/
+**/__pycache__/
+ai-service/*.pyc
+ai-service/.pytest_cache/
+ai-service/venv/
+ai-service/.venv/
+ai-service/*.egg-info/
+
+# --- IDE ---
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Data ---
+data/papers/
+*.pdf
+
+# --- Docker ---
+docker-compose.override.yml
+
+# --- Node ---
+node_modules/
+frontend/dist/

@@ -1,0 +1,214 @@
+{
+  "summary": {
+    "total": 22,
+    "passed": 22,
+    "failed": 0,
+    "blocked": 0,
+    "success_rate_percent": 100.0
+  },
+  "artifacts": {
+    "paper_a_id": "56d84895-02f4-49c3-87bc-949b86a2c9d6",
+    "paper_b_id": "009a89bd-1939-488a-afae-cc0f32f8f236",
+    "comparison_job_id": "129c08f0-2e2c-4e74-9817-7ea4e4f4196c"
+  },
+  "results": [
+    {
+      "id": "H01",
+      "category": "Health",
+      "description": "Spring Boot Actuator Health",
+      "expected": "HTTP 200, status UP",
+      "actual": "HTTP 200, {\"status\":\"UP\"}",
+      "status": "PASS",
+      "notes": ""
+    },
+    {
+      "id": "H02",
+      "category": "Health",
+      "description": "Backend API Health and AI connectivity",
+      "expected": "HTTP 200, aiService UP",
+      "actual": "HTTP 200, aiService={'status': 'UP', 'message': 'AI service is reachable'}",
+      "status": "PASS",
+      "notes": ""
+    },
+    {
+      "id": "H03",
+      "category": "AI Health",
+      "description": "AI Service internal health & LLM status",
+      "expected": "HTTP 200, status ok, llm_enabled True",
+      "actual": "HTTP 200, llm_enabled=True, provider=groq",
+      "status": "PASS",
+      "notes": ""
+    },
+    {
+      "id": "U01",
+      "category": "Upload",
+      "description": "Upload Paper A (Random Forest)",
+      "expected": "HTTP 201, EXTRACTED, pageCount > 0",
+      "actual": "HTTP 201, id=56d84895-02f4-49c3-87bc-949b86a2c9d6, status=EXTRACTED, pages=1",
+      "status": "PASS",
+      "notes": ""
+    },
+    {
+      "id": "U02",
+      "category": "Upload",
+      "description": "Upload Paper B (Logistic Regression)",
+      "expected": "HTTP 201, EXTRACTED, pageCount > 0",
+      "actual": "HTTP 201, id=009a89bd-1939-488a-afae-cc0f32f8f236, status=EXTRACTED, pages=1",
+      "status": "PASS",
+      "notes": ""
+    },
+    {
+      "id": "L01",
+      "category": "Paper API",
+      "description": "List all papers with pagination",
+      "expected": "Contains Paper A & B, total >= 2",
+      "actual": "HTTP 200, totalElements=2, items=2",
+      "status": "PASS",
+      "notes": ""
+    },
+    {
+      "id": "L02",
+      "category": "Paper API",
+      "description": "Get single paper details by ID",
+      "expected": "HTTP 200 with matching ID and EXTRACTED",
+      "actual": "HTTP 200, title=Predicting Student Academic Performance Using Random Forest Classification",
+      "status": "PASS",
+      "notes": ""
+    },
+    {
+      "id": "C01",
+      "category": "Comparison",
+      "description": "Create multi-paper comparison job",
+      "expected": "HTTP 201 with jobId",
+      "actual": "HTTP 201, jobId=129c08f0-2e2c-4e74-9817-7ea4e4f4196c, status=COMPLETED",
+      "status": "PASS",
+      "notes": ""
+    },
+    {
+      "id": "C02",
+      "category": "Comparison",
+      "description": "Comparison job execution & completion",
+      "expected": "COMPLETED within 45s",
+      "actual": "Status=COMPLETED in 0.0s",
+      "status": "PASS",
+      "notes": ""
+    },
+    {
+      "id": "C03",
+      "category": "Comparison",
+      "description": "Comparison dimensions & research gaps extraction",
+      "expected": "Methodology, metrics, and candidate research gaps present",
+      "actual": "Methodology: 2, Metrics: 2, Gaps: 4, Matrix dims: 7",
+      "status": "PASS",
+      "notes": ""
+    },
+    {
+      "id": "V01",
+      "category": "Evidence",
+      "description": "Verify supported claim (86.0% accuracy)",
+      "expected": "SUPPORTED with evidence citations",
+      "actual": "HTTP 200, status=SUPPORTED, evidence_count=3",
+      "status": "PASS",
+      "notes": "Citations found: True"
+    },
+    {
+      "id": "V02",
+      "category": "Evidence",
+      "description": "Verify refuted/contradicted claim",
+      "expected": "CONTRADICTED or INSUFFICIENT_EVIDENCE",
+      "actual": "HTTP 200, status=CONTRADICTED",
+      "status": "PASS",
+      "notes": ""
+    },
+    {
+      "id": "R01",
+      "category": "Report",
+      "description": "Generate Markdown Literature Review report",
+      "expected": "HTTP 200 Markdown formatted text with headers",
+      "actual": "HTTP 200, size=5915 chars, contentType=",
+      "status": "PASS",
+      "notes": ""
+    },
+    {
+      "id": "A01",
+      "category": "AI Subsystem",
+      "description": "FastAPI direct PDF text extraction (/internal/extract)",
+      "expected": "HTTP 200 with extracted pages",
+      "actual": "HTTP 200, pages=1, title=Predicting Student Academic Performance Using Random Forest Classification",
+      "status": "PASS",
+      "notes": ""
+    },
+    {
+      "id": "A02",
+      "category": "AI Subsystem",
+      "description": "FastAPI text retrieval service (/internal/retrieve)",
+      "expected": "HTTP 200 with results list",
+      "actual": "HTTP 200, results=0",
+      "status": "PASS",
+      "notes": ""
+    },
+    {
+      "id": "E01",
+      "category": "Error Handling",
+      "description": "Non-existent paper ID returns HTTP 404",
+      "expected": "HTTP 404",
+      "actual": "HTTP 404",
+      "status": "PASS",
+      "notes": ""
+    },
+    {
+      "id": "E02",
+      "category": "Error Handling",
+      "description": "Malformed UUID parameter returns 400 or 404",
+      "expected": "HTTP 400 or 404",
+      "actual": "HTTP 400",
+      "status": "PASS",
+      "notes": ""
+    },
+    {
+      "id": "E03",
+      "category": "Error Handling",
+      "description": "Comparison with empty paperIds returns HTTP 400",
+      "expected": "HTTP 400",
+      "actual": "HTTP 400",
+      "status": "PASS",
+      "notes": ""
+    },
+    {
+      "id": "E04",
+      "category": "Error Handling",
+      "description": "Evidence verification without claim returns HTTP 400",
+      "expected": "HTTP 400",
+      "actual": "HTTP 400",
+      "status": "PASS",
+      "notes": ""
+    },
+    {
+      "id": "S01",
+      "category": "Security",
+      "description": "Error responses do not leak stack traces",
+      "expected": "No stack trace in response",
+      "actual": "Stack trace absent in error body",
+      "status": "PASS",
+      "notes": ""
+    },
+    {
+      "id": "S02",
+      "category": "Security",
+      "description": "Filename path traversal resistance",
+      "expected": "Uploaded file stored using secure UUID filename",
+      "actual": "HTTP 201, storage safe",
+      "status": "PASS",
+      "notes": ""
+    },
+    {
+      "id": "S03",
+      "category": "Security",
+      "description": "API keys and secrets not exposed in health endpoints",
+      "expected": "Secrets omitted from public output",
+      "actual": "No API keys or secrets detected",
+      "status": "PASS",
+      "notes": ""
+    }
+  ]
+}
